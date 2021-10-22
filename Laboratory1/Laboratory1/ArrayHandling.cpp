@@ -75,3 +75,9 @@ void v_mod_tab(CTable cTab, int iNewSize)
 {
 	cTab.bSetNewSize(iNewSize);
 }
+
+void v_test()
+{
+	CTable c_origi;
+	CTable c_copy(c_origi);
+}

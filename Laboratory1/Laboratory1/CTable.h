@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CTABLE
+#define CTABLE
 #include <string>
 
 class CTable
@@ -16,8 +17,12 @@ public:
 private:
 	static const std::string sDefaultName;
 	static const int iDefaultlTableLen;
+	static const int iPiVal;
 	std::string sName;
 	int iTableLen;
 	int* cTableArray;
+	int* pi_val;
 };
+
+#endif
 
