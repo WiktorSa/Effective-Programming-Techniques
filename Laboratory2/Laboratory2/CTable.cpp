@@ -21,7 +21,7 @@ CTable::CTable(std::string sName, int iTableLen)
 	this->iTableLen = iTableLen;
 	std::cout << "parametr: " + sName << std::endl;
 
-	if (iTableLen <= 0) {
+	if (iTableLen < 0) {
 		std::cout << "Negative length of array. Using default value" << std::endl;
 		this->iTableLen = iDefaultlTableLen;
 	}
@@ -42,11 +42,11 @@ CTable::CTable(CTable& pcOther)
 	std::cout << "kopiuj: " + sName << std::endl;
 }
 
-/*CTable::~CTable()
+CTable::~CTable()
 {
 	std::cout << "usuwam: " + sName << std::endl;
 	delete[] cTableArray;
-}*/
+}
 
 void CTable::vSetName(std::string sName)
 {
@@ -88,10 +88,24 @@ CTable* CTable::pcClone()
 	return new CTable(*this);
 }
 
-void CTable::operator=(const CTable& pcOther)
+/*void CTable::operator=(const CTable& pcOther)
 {
 	cTableArray = pcOther.cTableArray;
 	iTableLen = pcOther.iTableLen;
+}*/
+
+void CTable::operator=(const CTable& pcOther)
+{
+	delete[] cTableArray;
+
+	sName = pcOther.sName;
+	iTableLen = pcOther.iTableLen;
+	cTableArray = new int[iTableLen];
+
+	for (int i = 0; i < iTableLen; i++)
+	{
+		*(cTableArray + i) = *(pcOther.cTableArray + i);
+	}
 }
 
 CTable CTable::operator+(CTable& pcNewVal)
@@ -110,6 +124,28 @@ CTable CTable::operator+(CTable& pcNewVal)
 	}
 
 	return concatenatedCTable;
+}
+
+CTable CTable::operator-(int reductionSize)
+{
+	if (reductionSize <= 0) {
+		return *this;
+	}
+
+	int sizeAfterReduction = iTableLen - reductionSize;
+
+	if (sizeAfterReduction < 0) {
+		sizeAfterReduction = 0;
+	}
+
+	CTable reductedCTable(sName, sizeAfterReduction);
+
+	for (int i = 0; i < sizeAfterReduction; i++)
+	{
+		*(reductedCTable.cTableArray + i) = *(cTableArray + i);
+	}
+
+	return reductedCTable;
 }
 
 void CTable::vSetValueAt(int iOffset, int iNewVal)

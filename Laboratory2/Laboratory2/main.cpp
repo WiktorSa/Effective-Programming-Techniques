@@ -53,8 +53,34 @@ int main()
 	std::cout << std::endl;
 
 	c_tab_5 = (*c_tab_3) + (*c_tab_4) + c_tab_5;
+	std::cout << std::endl;
 	c_tab_5.vPrint();
 
 	delete c_tab_3;
 	delete c_tab_4;
+
+	CTable c_tab_6("test_minus_operator", 5);
+	c_tab_6.vSetValueAt(0, 0);
+	c_tab_6.vSetValueAt(1, 1);
+	c_tab_6.vSetValueAt(2, 2);
+	c_tab_6.vSetValueAt(3, 3);
+	c_tab_6.vSetValueAt(4, 4);
+	std::cout << std::endl;
+
+	c_tab_6.vPrint();
+	std::cout << std::endl;
+
+	c_tab_6 = c_tab_6 - (-5);
+	c_tab_6.vPrint();
+	std::cout << std::endl;
+
+	c_tab_6 = c_tab_6 - 3;
+	c_tab_6.vPrint();
+	std::cout << std::endl;
+
+	c_tab_6 = c_tab_6 - 4;
+	c_tab_6.vPrint();
+	std::cout << "Jak nie printuje liczb to jest dobrze" << std::endl;
+
+	std::cout << std::endl;
 }

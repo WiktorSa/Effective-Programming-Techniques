@@ -8,12 +8,13 @@ public:
 	CTable();
 	CTable(std::string sName, int iTableLen);
 	CTable(CTable& pcOther);
-	//~CTable();
+	~CTable();
 	void vSetName(std::string sName);
 	bool bSetNewSize(int iTableLen);
 	CTable* pcClone();
 	void operator=(const CTable& pcOther);
 	CTable operator+(CTable& pcNewVal);
+	CTable operator-(int reductionSize);
 	void vSetValueAt(int iOffset, int iNewVal);
 	void vPrint();
 
